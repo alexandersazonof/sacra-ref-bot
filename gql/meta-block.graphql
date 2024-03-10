@@ -1,0 +1,7 @@
+query TestQuery {
+    _meta {
+        block {
+            number
+        }
+    }
+}
