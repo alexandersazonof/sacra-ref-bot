@@ -13,4 +13,4 @@ generates:
         BigInt: string
         Bytes: string
         Int8: number
-schema: https://graph.public-sonic.fantom.network/gql/subgraphs/name/alexandersazonof/sacra-staging-sonict2
+schema: https://graph.public-sonic.fantom.network/gql/subgraphs/name/alexandersazonof/sacra-sonic-beta3

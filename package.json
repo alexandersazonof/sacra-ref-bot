@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && yarn build:gql && yarn migration",
+    "build": "yarn build:gql && tsc  && yarn migration",
     "build:gql": "graphql-codegen --config ./gql/codegen.yml",
     "start": "yarn build && node dist/src/bot.js",
     "migration": "npx ts-node node_modules/.bin/knex migrate:latest --knexfile knex-config.ts --env production",
