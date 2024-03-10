@@ -176,5 +176,5 @@ function rules(chatId: number) {
 
 async function exit(chatId: number) {
   await deleteUserChatByChatId(chatId);
-  bot.sendMessage(chatId, "You have exited the game. Please enter your Ethereum address to start playing again.");
+  bot.sendMessage(chatId, "You have exited the game. Please enter /start to start again.");
 }
