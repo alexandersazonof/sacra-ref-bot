@@ -127,16 +127,20 @@ bot.on("callback_query", async query => {
 
 function getHeroes(chatId: number) {
   bot.sendMessage(chatId,
-    'Complete tasks in the game and get your heroes🧟‍♀️\n' +
+    'In order to get heroes, complete tasks in the game:\n' +
     '\n' +
-    'Just only 4 tasks and you can get 8 heroes:\n' +
+    '⚜️Completed the first biome = 1 hero\n' +
+    '⚜️Defeat the Second Boss = 1 hero\n' +
+    '⚜️Overcome the Third Boss = 2 heroes\n' +
+    ' ⚜️Victory over the Fourth Boss = 4 heroes\n' +
     '\n' +
-    '✅Completed the first biome \n' +
-    '✅Defeat the Second Boss \n' +
-    '✅Overcome the Third Boss\n' +
-    '✅Victory over the Fourth Boss \n' +
+    'If you complete all the tasks you can get 8 heroes!\n' +
     '\n' +
-    'Go💰');
+    '👫Don\'t forget about participating in the referral program. \n' +
+    '\n' +
+    'For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!\n' +
+    '\n' +
+    'You can claim your heroes in the Sacra game.');
 }
 
 async function yourArmy(chatId: number) {
