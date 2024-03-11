@@ -29,7 +29,10 @@ bot.onText(/\/start/, async msg => {
     } else {
       await updateUserChat(chatId, newUserChat);
     }
-    bot.sendMessage(chatId, "Welcome to the game! Please send you address to start playing");
+    bot.sendMessage(chatId,
+      "Open the doors to magic - launch Sacra Airdrop Program.\n" +
+      "Participate and get heros. Every hero is an opportunity to earn money. Let's go!\n" +
+      "Please send you address to start playing");
   }
 });
 
@@ -119,13 +122,15 @@ bot.on("callback_query", async query => {
 });
 
 function getHeroes(chatId: number) {
-  bot.sendMessage(chatId, "- Сompleted the first biome? So you got 1 hero + link claim\n" +
+  bot.sendMessage(chatId, "Complete tasks in the game and get your heroes!\n" +
+    "Just only 4 tasks and you can get 8 heroes.\n" +
     "\n" +
-    " - Defeat the Second Boss? Another hero for you.\n" +
+    "Completed the first biome \n" +
+    "Defeat the Second Boss \n" +
+    "Overcome the Third Boss\n" +
+    "Victory over the Fourth Boss \n" +
     "\n" +
-    " - You overcome the Third Boss? Catch 2 heroes.\n" +
-    "\n" +
-    " - You are lucky - victory over the Fourth Boss! You got 4 heroes.");
+    "Go!");
 }
 
 async function yourArmy(chatId: number) {
@@ -171,7 +176,17 @@ async function getLeaderboard(chatId: number) {
 }
 
 function rules(chatId: number) {
-  bot.sendMessage(chatId, "Rules");
+  bot.sendMessage(chatId, "In order to get heroes, complete tasks in the game:\n" +
+    "\n" +
+    "Completed the first biome = 1 hero\n" +
+    "Defeat the Second Boss = 1 hero\n" +
+    "You overcome the Third Boss =2 heroes\n" +
+    "You are lucky - victory over the Fourth Boss = 4 heroes\n" +
+    "\n" +
+    "If you complete all the tasks you can get 8 heroes!\n" +
+    "Don't forget about participating in the referral program. For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!\n" +
+    "\n" +
+    "You can claim your heroes in the Sacra game.");
 }
 
 async function exit(chatId: number) {
