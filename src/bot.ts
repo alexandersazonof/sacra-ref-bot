@@ -30,7 +30,8 @@ bot.onText(/\/start/, async msg => {
       await updateUserChat(chatId, newUserChat);
     }
     bot.sendMessage(chatId,
-      'Open the doors to magic - launch Sacra Airdrop Program☄️\n' +
+      'Open the doors to magic!\n' +
+      'Launch Sacra Airdrop Program☄️\n' +
       'Participate and get heros🧌\n' +
       'Every hero is an opportunity to earn money💰\n' +
       'Let\'s go! \n' +
