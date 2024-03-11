@@ -126,15 +126,17 @@ bot.on("callback_query", async query => {
 });
 
 function getHeroes(chatId: number) {
-  bot.sendMessage(chatId, "Complete tasks in the game and get your heroes!\n" +
-    "Just only 4 tasks and you can get 8 heroes.\n" +
-    "\n" +
-    "Completed the first biome \n" +
-    "Defeat the Second Boss \n" +
-    "Overcome the Third Boss\n" +
-    "Victory over the Fourth Boss \n" +
-    "\n" +
-    "Go!");
+  bot.sendMessage(chatId,
+    'Complete tasks in the game and get your heroes🧟‍♀️\n' +
+    '\n' +
+    'Just only 4 tasks and you can get 8 heroes:\n' +
+    '\n' +
+    '✅Completed the first biome \n' +
+    '✅Defeat the Second Boss \n' +
+    '✅Overcome the Third Boss\n' +
+    '✅Victory over the Fourth Boss \n' +
+    '\n' +
+    'Go💰');
 }
 
 async function yourArmy(chatId: number) {
