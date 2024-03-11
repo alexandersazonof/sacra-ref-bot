@@ -1,0 +1,25 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - custom_network
+
+  bot:
+    image: bot
+    depends_on:
+      - postgres
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+
+volumes:
+  postgres_data:
