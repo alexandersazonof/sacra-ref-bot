@@ -30,9 +30,12 @@ bot.onText(/\/start/, async msg => {
       await updateUserChat(chatId, newUserChat);
     }
     bot.sendMessage(chatId,
-      "Open the doors to magic - launch Sacra Airdrop Program.\n" +
-      "Participate and get heros. Every hero is an opportunity to earn money. Let's go!\n" +
-      "Please send you address to start playing");
+      'Open the doors to magic - launch Sacra Airdrop Program☄️\n' +
+      'Participate and get heros🧌\n' +
+      'Every hero is an opportunity to earn money💰\n' +
+      'Let\'s go! \n' +
+      '\n' +
+      'Send you address to start playing💫');
   }
 });
 
