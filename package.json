@@ -5,10 +5,14 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn build:gql && tsc  && yarn migration",
+    "build:dev": "yarn build:gql && tsc  && yarn migration:dev",
     "build:gql": "graphql-codegen --config ./gql/codegen.yml",
     "start": "yarn build && node dist/src/bot.js",
+    "start:dev": "yarn build:dev && node dist/src/bot.js",
     "migration": "npx ts-node node_modules/.bin/knex migrate:latest --knexfile knex-config.ts --env production",
-    "rollback": "npx ts-node node_modules/.bin/knex migrate:rollback --knexfile knex-config.ts --env production"
+    "migration:dev": "npx ts-node node_modules/.bin/knex migrate:latest --knexfile knex-config.ts --env staging",
+    "rollback": "npx ts-node node_modules/.bin/knex migrate:rollback --knexfile knex-config.ts --env production",
+    "rollback:dev": "npx ts-node node_modules/.bin/knex migrate:rollback --knexfile knex-config.ts --env staging"
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",

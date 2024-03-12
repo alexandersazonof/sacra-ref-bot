@@ -80,7 +80,7 @@ bot.onText(/\/menu/, async msg => {
 });
 
 function mainMenu(chatId: number) {
-  bot.sendMessage(chatId, "Menu:", {
+  bot.sendMessage(chatId, 'Menu:', {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Get your heroes", callback_data: "get_heroes" }],
@@ -118,29 +118,21 @@ bot.on("callback_query", async query => {
     default:
       mainMenu(chatId);
   }
-
-  bot.editMessageReplyMarkup({inline_keyboard: []}, {
-    chat_id: chatId,
-    message_id: messageId
-  });
+  deleteMessage(chatId, messageId);
 });
 
 function getHeroes(chatId: number) {
   bot.sendMessage(chatId,
-    'In order to get heroes, complete tasks in the game:\n' +
+    'Complete tasks in the game and get your heroes🧟‍♀️\n' +
     '\n' +
-    '⚜️Completed the first biome = 1 hero\n' +
-    '⚜️Defeat the Second Boss = 1 hero\n' +
-    '⚜️Overcome the Third Boss = 2 heroes\n' +
-    '⚜️Victory over the Fourth Boss = 4 heroes\n' +
+    'Just only 4 tasks and you can get 8 heroes:\n' +
     '\n' +
-    'If you complete all the tasks you can get 8 heroes!\n' +
+    '✅Completed the first biome \n' +
+    '✅Defeat the Second Boss \n' +
+    '✅Overcome the Third Boss\n' +
+    '✅Victory over the Fourth Boss \n' +
     '\n' +
-    '👫Don\'t forget about participating in the referral program. \n' +
-    '\n' +
-    'For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!\n' +
-    '\n' +
-    'You can claim your heroes in the Sacra game.');
+    'Go');
 }
 
 async function yourArmy(chatId: number) {
@@ -186,15 +178,17 @@ async function getLeaderboard(chatId: number) {
 }
 
 function rules(chatId: number) {
-  bot.sendMessage(chatId, "In order to get heroes, complete tasks in the game:\n" +
-    "\n" +
-    "Completed the first biome = 1 hero\n" +
-    "Defeat the Second Boss = 1 hero\n" +
-    "You overcome the Third Boss =2 heroes\n" +
-    "You are lucky - victory over the Fourth Boss = 4 heroes\n" +
+  bot.sendMessage(chatId, "In order to get heroes, complete tasks in the game:\n\n" +
+    "⚜️Completed the first biome = 1 hero\n" +
+    "⚜️Defeat the Second Boss = 1 hero\n" +
+    "⚜️Overcome the Third Boss = 2 heroes\n" +
+    "⚜️Victory over the Fourth Boss = 4 heroes\n" +
     "\n" +
     "If you complete all the tasks you can get 8 heroes!\n" +
-    "Don't forget about participating in the referral program. For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!\n" +
+    "\n" +
+    "👫Don't forget about participating in the referral program. \n" +
+    "\n" +
+    "For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!\n" +
     "\n" +
     "You can claim your heroes in the Sacra game.");
 }
@@ -202,4 +196,16 @@ function rules(chatId: number) {
 async function exit(chatId: number) {
   await deleteUserChatByChatId(chatId);
   bot.sendMessage(chatId, "You have exited the game. Please enter /start to start again.");
+}
+
+function deleteMessage(chatId: number, messageId: number): void {
+  bot.deleteMessage(chatId, messageId).then(success => {
+    if (success) {
+      console.log('Message deleted successfully');
+    } else {
+      console.log('Failed to delete the message');
+    }
+  }).catch(err => {
+    console.error('Error in deleting message:', err);
+  });
 }

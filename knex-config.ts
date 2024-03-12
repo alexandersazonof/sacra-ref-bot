@@ -15,7 +15,6 @@ const knexConfig: KnexConfig = {
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       port: parseInt(process.env.DB_PORT || '5432', 10),
-      ssl: { rejectUnauthorized: false },
     },
     pool: {
       min: 2,
