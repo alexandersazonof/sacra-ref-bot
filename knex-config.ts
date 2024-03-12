@@ -14,15 +14,13 @@ const knexConfig: KnexConfig = {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      port: parseInt(process.env.DB_PORT || '5432', 10)
+      port: parseInt(process.env.DB_PORT || '5432', 10),
+      ssl: true,
     },
     pool: {
       min: 2,
-      max: 10
+      max: 5
     },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
   },
 
   production: {
@@ -32,15 +30,13 @@ const knexConfig: KnexConfig = {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      port: parseInt(process.env.DB_PORT || '5432', 10)
+      port: parseInt(process.env.DB_PORT || '5432', 10),
+      ssl: true,
     },
     pool: {
       min: 2,
-      max: 10
+      max: 5
     },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
   }
 };
 

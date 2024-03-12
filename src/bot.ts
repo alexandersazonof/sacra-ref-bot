@@ -148,7 +148,7 @@ async function yourArmy(chatId: number) {
   if (userChat && userChat.address) {
     const refUsers = await getUsersByRefCode(userChat.address);
     bot.sendMessage(chatId, `
-🔗 *Ref link:* ${LINK}?refCode=${userChat.address} 
+🔗 *Ref link:* ${LINK}?refCode=${userChat.address}&utm_id=ref_bot
 👫 *Invite a friend using your link* and get 🦸‍♂️ 1 hero for every 2 friends who have completed level 5.
 📖 *Guide:* [What needs to be done](${GUIDE_LINK})
 
