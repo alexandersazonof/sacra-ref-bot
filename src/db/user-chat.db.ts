@@ -13,14 +13,26 @@ export const addUserChat = async (userChat: UserChatModel): Promise<void> => {
 };
 
 export const updateUserChat = async (chatId: number, userChat: UserChatModel): Promise<void> => {
-  await knex(USER_CHART_TABLE).where({ chatId }).update(userChat);
+  try {
+    await knex(USER_CHART_TABLE).where({ chatId }).update(userChat);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 export const getUserChatByChatId = async (chatId: number): Promise<UserChatModel | undefined> => {
-  const result = await knex(USER_CHART_TABLE).where({ chatId }).first();
-  return result;
+  try {
+    const result = await knex(USER_CHART_TABLE).where({ chatId }).first();
+    return result;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export const deleteUserChatByChatId = async (chatId: number): Promise<void> => {
-  await knex(USER_CHART_TABLE).where({ chatId }).del();
+  try {
+    await knex(USER_CHART_TABLE).where({ chatId }).delete();
+  } catch (e) {
+    console.error(e);
+  }
 };
