@@ -132,7 +132,7 @@ function getHeroes(chatId: number) {
     '⚜️Completed the first biome = 1 hero\n' +
     '⚜️Defeat the Second Boss = 1 hero\n' +
     '⚜️Overcome the Third Boss = 2 heroes\n' +
-    ' ⚜️Victory over the Fourth Boss = 4 heroes\n' +
+    '⚜️Victory over the Fourth Boss = 4 heroes\n' +
     '\n' +
     'If you complete all the tasks you can get 8 heroes!\n' +
     '\n' +
