@@ -6,13 +6,26 @@ import { addUserChat, deleteUserChatByChatId, getUserChatByChatId, updateUserCha
 
 dotenv.config();
 
+const IMAGE_LINK = 'https://ibb.co/mCNswNx'
 const LINK = process.env.SACRA_LINK  || 'https://sonic-beta.sacra.cc/';
 const GUIDE_LINK = process.env.SACRA_GUIDE_LINK || 'https://docs.sacra.cc/sacra-whitepaper/';
 const TOKEN: string = process.env.SACRA_TELEGRAM_BOT_TOKEN || '';
+const AMOUNT = '10';
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 bot.onText(/\/start/, async msg => {
+  const chatId = msg.chat.id;
+  bot.sendPhoto(chatId, IMAGE_LINK, {
+    caption:`Hello @${msg.chat.username} 🔥\n` +
+      "Welcome to Sacra - the first fully on-chain RPG game. \n" +
+      `🤑With this bot you can get heroes with which you will earn your ${AMOUNT}$ when you launch Sacra!\n` +
+      "Let's go?\n" +
+      "Enter /go\n"
+  })
+});
+
+bot.onText(/\/go/, async msg => {
   const chatId = msg.chat.id;
   const userChat = await getUserChatByChatId(chatId);
   if (userChat && userChat.address) {
@@ -30,13 +43,7 @@ bot.onText(/\/start/, async msg => {
       await updateUserChat(chatId, newUserChat);
     }
     bot.sendMessage(chatId,
-      'Open the doors to magic!\n' +
-      'Launch Sacra Airdrop Program☄️\n' +
-      'Participate and get heros🧌\n' +
-      'Every hero is an opportunity to earn money💰\n' +
-      'Let\'s go! \n' +
-      '\n' +
-      'Send you address to start playing💫');
+      'Send your crypto wallet address to start💰');
   }
 });
 
@@ -123,16 +130,15 @@ bot.on("callback_query", async query => {
 
 function getHeroes(chatId: number) {
   bot.sendMessage(chatId,
-    'Complete tasks in the game and get your heroes🧟‍♀️\n' +
-    '\n' +
-    'Just only 4 tasks and you can get 8 heroes:\n' +
-    '\n' +
-    '✅Completed the first biome \n' +
-    '✅Defeat the Second Boss \n' +
-    '✅Overcome the Third Boss\n' +
-    '✅Victory over the Fourth Boss \n' +
-    '\n' +
-    'Go');
+    "Complete tasks in the game and get your heroes🧟‍♀️\n" +
+    "You can get 8 heroes!\n" +
+    "\n" +
+    "🔅Completed the first biome \n" +
+    "🔅Defeat the Second Boss \n" +
+    "🔅Overcome the Third Boss\n" +
+    "🔅Victory over the Fourth Boss \n" +
+    "\n" +
+    "Go - www.sacra.cc");
 }
 
 async function yourArmy(chatId: number) {
@@ -148,7 +154,7 @@ async function yourArmy(chatId: number) {
 - You have 🧑‍🤝‍🧑 ${refUsers.length} users in your army.
 - 🎖 Only ${refUsers.filter(user => user.heroes.filter(hero => hero.stats.level >= 5).length > 0).length} users got level 5 heroes.
 
-Remember, the more friends you invite, the stronger your army becomes!
+The more friends you invite, the more ${AMOUNT}$ are waiting for you in the game!
     `, { parse_mode: "Markdown" });
   } else {
     bot.sendMessage(chatId, "❌ Can not find your address. Please enter your Ethereum address again.");
@@ -162,13 +168,13 @@ async function getLeaderboard(chatId: number) {
     let messageText = "🏆 *Leaderboard*\n\n";
 
     users.slice(0, 50).forEach((user, index) => {
-      messageText += `*${index + 1}.* ${user.id} - ${user.heroes.filter(hero => !!hero.refCode).length} armies\n`;
+      messageText += `*${index + 1}.* ${user.id} - ${user.heroes.filter(hero => !!hero.refCode).length} player\n`;
     });
 
     const currentUserIndex = users.findIndex(user => user.id === userChat.address);
     if (currentUserIndex > 49) {
       const currentUser = users[currentUserIndex];
-      messageText += `\nYour position: *${currentUserIndex + 1}* (${currentUser.id} - ${currentUser.heroes.filter(hero => !!hero.refCode).length} armies)`;
+      messageText += `\nYour position: *${currentUserIndex + 1}* (${currentUser.id} - ${currentUser.heroes.filter(hero => !!hero.refCode).length} player)`;
     }
 
     bot.sendMessage(chatId, messageText, { parse_mode: "Markdown" });
@@ -178,19 +184,18 @@ async function getLeaderboard(chatId: number) {
 }
 
 function rules(chatId: number) {
-  bot.sendMessage(chatId, "In order to get heroes, complete tasks in the game:\n\n" +
-    "⚜️Completed the first biome = 1 hero\n" +
-    "⚜️Defeat the Second Boss = 1 hero\n" +
-    "⚜️Overcome the Third Boss = 2 heroes\n" +
-    "⚜️Victory over the Fourth Boss = 4 heroes\n" +
-    "\n" +
-    "If you complete all the tasks you can get 8 heroes!\n" +
-    "\n" +
-    "👫Don't forget about participating in the referral program. \n" +
-    "\n" +
-    "For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!\n" +
-    "\n" +
-    "You can claim your heroes in the Sacra game.");
+  bot.sendMessage(chatId,
+    `To get heroes, complete tasks in the game:
+⚜️Completed the first biome = 1 hero
+⚜️Defeat the Second Boss = 1 hero
+⚜️Overcome the Third Boss = 2 heroes
+⚜️Victory over the Fourth Boss = 4 heroes
+You can get 8 heroes!
+
+👫Referral program. For every 2 friends who upgrade their hero to level 5, you will receive 1 hero!
+
+You can claim your heroes in the [Sacra](${LINK}) game.`, { parse_mode: "Markdown" }
+  );
 }
 
 async function exit(chatId: number) {
