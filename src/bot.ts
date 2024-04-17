@@ -8,7 +8,7 @@ dotenv.config();
 
 const IMAGE_LINK = 'https://ibb.co/mCNswNx'
 const LINK = process.env.SACRA_LINK  || 'https://sonic-beta.sacra.cc/';
-const GUIDE_LINK = process.env.SACRA_GUIDE_LINK || 'https://docs.sacra.cc/sacra-whitepaper/';
+const GUIDE_LINK = process.env.SACRA_GUIDE_LINK || 'https://docs.google.com/document/d/1vXL50i3T_SWwOxAWCEv16QPJFYlEhvMZk3_z30cf-34/edit';
 const TOKEN: string = process.env.SACRA_TELEGRAM_BOT_TOKEN || '';
 const AMOUNT = '10';
 
