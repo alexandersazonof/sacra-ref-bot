@@ -9,7 +9,11 @@ const knex = knexFactory(knexConfig[env]);
 const USER_CHART_TABLE = 'users_chat';
 
 export const addUserChat = async (userChat: UserChatModel): Promise<void> => {
-  await knex(USER_CHART_TABLE).insert(userChat);
+  try {
+    await knex(USER_CHART_TABLE).insert(userChat);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export const updateUserChat = async (chatId: number, userChat: UserChatModel): Promise<void> => {
