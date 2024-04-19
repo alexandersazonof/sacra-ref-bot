@@ -5,7 +5,6 @@ export function getUsersQuery(): DocumentNode {
       query getUsersQuery($skip: Int) {
           userEntities(
               where: {
-                  id_not: "0x0000000000000000000000000000000000000000"
                   heroes_: {
                       refCode_not: null
                   }

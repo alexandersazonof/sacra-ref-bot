@@ -167,11 +167,28 @@ async function getLeaderboard(chatId: number) {
     const users = await getUsers();
     let messageText = "🏆 *Leaderboard*\n\n";
 
-    users.slice(0, 50).forEach((user, index) => {
-      messageText += `*${index + 1}.* ${user.id} - ${user.heroes.filter(hero => !!hero.refCode).length} player\n`;
-    });
+    let refUserRecords: Record<string, number> = {};
 
-    const currentUserIndex = users.findIndex(user => user.id === userChat.address);
+    for (const user of users) {
+      for (const hero of user.heroes) {
+        if (hero.refCode) {
+          if (!refUserRecords[hero.refCode]) {
+            refUserRecords[hero.refCode] = 0;
+          }
+          refUserRecords[hero.refCode]++;
+        }
+      }
+    }
+
+    refUserRecords = Object.fromEntries(
+      Object.entries(refUserRecords).sort(([,a],[,b]) => b - a)
+    );
+
+    for (const [index, [refCode, count]] of Object.entries(Object.entries(refUserRecords))) {
+      messageText += `*${parseInt(index) + 1}.* ${refCode} - ${count} player\n`;
+    }
+
+    const currentUserIndex = Object.keys(refUserRecords).findIndex(refCode => refCode.toLowerCase() === userChat.address?.toLowerCase() || '');
     if (currentUserIndex > 49) {
       const currentUser = users[currentUserIndex];
       messageText += `\nYour position: *${currentUserIndex + 1}* (${currentUser.id} - ${currentUser.heroes.filter(hero => !!hero.refCode).length} player)`;
