@@ -138,7 +138,7 @@ function getHeroes(chatId: number) {
     "🔅Overcome the Third Boss\n" +
     "🔅Victory over the Fourth Boss \n" +
     "\n" +
-    "Go - www.sacra.cc");
+    `Go - ${LINK}`);
 }
 
 async function yourArmy(chatId: number) {
