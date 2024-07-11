@@ -8,7 +8,7 @@
           "user-agent": "JS GraphQL"
         },
         "introspect": false,
-        "url": "https://graph.public-sonic.fantom.network/gql/subgraphs/name/alexandersazonof/sacra-sonic-beta3"
+        "url": "https://graph.public-sonic.fantom.network/gql/subgraphs/name/alexandersazonof/sacra-staging-sonict2"
       }
     }
   }
